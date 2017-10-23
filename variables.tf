@@ -13,6 +13,7 @@ variable "iam_instance_profile" {}
 variable "key_name" {}
 variable "security_group" {
   description = "The security group the instances to use"
+  default = []
 }
 
 variable "user_data" {
