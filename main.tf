@@ -27,7 +27,7 @@ resource "aws_launch_configuration" "launch_config" {
 
 resource "aws_autoscaling_group" "main_asg" {
   //We want this to explicitly depend on the launch config above
-  depends_on = ["aws_launch_configuration.launch_config"]
+  //depends_on = ["aws_launch_configuration.launch_config"]
   name = "${var.asg_name}"
 
   // Split out the AZs string into an array
@@ -45,4 +45,10 @@ resource "aws_autoscaling_group" "main_asg" {
   desired_capacity = "${var.asg_number_of_instances}"
   health_check_grace_period = "${var.health_check_grace_period}"
   health_check_type = "${var.health_check_type}"
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = ["${concat(list(map("key", "Name", "value", var.asg_name, "propagate_at_launch", true)),var.tags)}"]
+
 }
