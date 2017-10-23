@@ -52,12 +52,17 @@ variable "subnet_azs" {
   // comma separated list
 }
 
-variable "azs" {
-  description = "Availability Zones"
-  // comma separated list
+variable "tags" {
+  description = "A list of tag blocks"
+  default     = []
 }
 
+//variable "azs" {
+// description = "Availability Zones"
+// comma separated list
+//}
+
 // Variables for providers used in this module
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_region" {}
+//variable "aws_access_key" {}
+//variable "aws_secret_key" {}
+//variable "aws_region" {}
